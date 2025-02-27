@@ -10,12 +10,13 @@ WORKDIR /app
 COPY api/package*.json ./
 
 # Install dependencies
-RUN npm install --force
+RUN npm ci --legacy-peer-deps
+
 # Copy the rest of the API source code into the container
 COPY api/ .
 
 # Expose the API port (5000 is the default in this case)
 EXPOSE 5000
 
-# Start the API server using the `npm start` command (make sure `start` is defined in package.json)
+# Start the API server
 CMD ["npm", "run", "dev"]

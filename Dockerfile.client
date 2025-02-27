@@ -9,7 +9,7 @@ WORKDIR /app
 COPY client/ .
 
 # Install dependencies
-RUN npm install --force
+RUN npm ci --legacy-peer-deps
 
 # Expose the Vite dev server port
 EXPOSE 3000
