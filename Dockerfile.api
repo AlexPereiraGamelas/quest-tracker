@@ -10,8 +10,7 @@ WORKDIR /app
 COPY api/package*.json ./
 
 # Install dependencies
-RUN npm ci --legacy-peer-deps
-
+RUN npm install --force
 # Copy the rest of the API source code into the container
 COPY api/ .
 
