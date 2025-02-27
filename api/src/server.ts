@@ -1,0 +1,35 @@
+import express from 'express';
+import type { Request, Response } from "express";
+
+import pool from "./connection.ts"
+
+const app = express();
+const port = 5000;
+
+// Define a simple endpoint that returns a message
+app.get('/api', (req: Request, res: Response): Response => {
+  return res.json({ message: "I'm alive POP" });
+});
+
+// Route to get all users
+app.get('/api/users', async (req, res) => {
+  try {
+    // Query the 'users' table
+    const result = await pool.query('SELECT * FROM "users"');
+    
+    // Send the users data as JSON response
+    res.json(result.rows);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("There was an error!", error.message);
+    } else {
+      console.error("An unknown error occurred");
+    }
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});

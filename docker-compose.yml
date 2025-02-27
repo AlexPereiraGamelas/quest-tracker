@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    ports:
+      - "3000:3000"  # Vite dev server port
+    volumes:
+      - ./client:/app  # Mount client directory for hot reloading
+      - /app/node_modules  # This ensures node_modules is not overwritten
+    depends_on:
+      - api  # If you have API service running separately
+    environment:
+      - VITE_API_URL=http://api:5000   # API URL for the client (if API is in a separate container)
+    stdin_open: true
+    tty: true
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "5000:5000"  # Node API port
+    volumes:
+      - ./api:/app  # Mount the API directory for hot reloading
+      - /app/node_modules  # This ensures node_modules is not overwritten
+      
+    networks:
+      - backend
+    environment:
+      - DB_HOST=db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=mydb
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql  # Mount schema file
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  db-data:

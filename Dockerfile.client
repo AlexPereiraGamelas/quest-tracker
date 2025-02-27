@@ -1,0 +1,18 @@
+# Dockerfile.client
+
+FROM node:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the rest of the client files
+COPY client/ .
+
+# Install dependencies
+RUN npm install --force
+
+# Expose the Vite dev server port
+EXPOSE 3000
+
+# Run the Vite dev server in development mode
+CMD ["npm", "run", "dev"]
