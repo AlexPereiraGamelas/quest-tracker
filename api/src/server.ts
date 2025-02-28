@@ -2,6 +2,7 @@ import express from 'express';
 import type { Request, Response } from "express";
 
 import pool from "./connection.ts"
+import { authenticateToken } from './middleware/authMiddleware.ts';
 
 const app = express();
 const port = 5000;
@@ -35,6 +36,11 @@ app.get("/api/serverStatus", (req: Request, res: Response): NodeJS.Timeout => {
   return setTimeout(() => {
     return res.json({ message: 'Alive and Well' });
   }, 2000)
+});
+
+app.get("/api/protected", authenticateToken, (req: Request, res: Response) => {
+  // set timeout to set up example of loading state in UI with react-query
+  res.json({ message: 'Success' });
 });
 
 // Start the server
