@@ -1,3 +1,9 @@
+/**
+ * Routes
+ * 
+ * Defines API endpoints and links them to the appropriate controller functions.
+ */
+
 import express from "express";
 import { registerUser, loginUser } from "./authController.ts";
 

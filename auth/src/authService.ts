@@ -1,3 +1,9 @@
+/**
+ * Service
+ * 
+ * handles all the business logic before interacting with the model
+ */
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { findUserByUsername, createUser } from "./userModel.ts";

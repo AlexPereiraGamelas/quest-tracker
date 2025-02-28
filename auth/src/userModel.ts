@@ -1,3 +1,9 @@
+/**
+ * Model
+ * 
+ * Defines the structure of the data and interacts with the database. It does not contain business logic.
+ */
+
 import pool from "./connection.ts";
 
 export interface User {

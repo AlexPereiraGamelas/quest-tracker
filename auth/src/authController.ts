@@ -1,3 +1,9 @@
+/**
+ * Controller
+ * 
+ * handles requests to the proper service and handles the response
+ */
+
 import type { Request, Response } from "express";
 import { register, login } from "./authService.ts";
 
