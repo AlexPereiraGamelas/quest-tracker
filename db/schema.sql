@@ -24,5 +24,5 @@ CREATE TABLE IF NOT EXISTS "campaigns" (
 ALTER TABLE "quests" ADD CONSTRAINT "quests_fk1" FOREIGN KEY ("campaign_id") REFERENCES "campaigns"("id");
 ALTER TABLE "campaigns" ADD CONSTRAINT "campaigns_fk3" FOREIGN KEY ("user_key") REFERENCES "users"("id");
 
-INSERT INTO users (id, username)
-VALUES ('dev', 'dev', "$2b$10$gri7ohWgh4LLR5Z8eIzahuCaWBbTzQUhwqWqTiafjfVTvdAau/M2i");
+INSERT INTO users (id, username, password)
+VALUES ('dev', 'dev', '$2b$10$gri7ohWgh4LLR5Z8eIzahuCaWBbTzQUhwqWqTiafjfVTvdAau/M2i');
