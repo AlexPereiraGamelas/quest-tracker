@@ -12,6 +12,7 @@ app.get('/api', (req: Request, res: Response): Response => {
 });
 
 // Route to get all users
+// Temporary Example of API -> DB
 app.get('/api/users', async (req, res) => {
   try {
     // Query the 'users' table

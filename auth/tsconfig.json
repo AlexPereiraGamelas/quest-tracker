@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",                   // Set the ECMAScript target version
+    "module": "ESNext",                 // Use CommonJS module system (for Node)
+    "moduleResolution": "Bundler",           // Resolve modules as Node.js would
+    "outDir": "./dist",                   // Output compiled files to the `dist/` folder
+    "esModuleInterop": true,              // Allow default imports from non-ES modules
+    "strict": true,                       // Enable strict type-checking options
+    "skipLibCheck": true,                 // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true,  // Ensure consistent casing of file names
+    "types": ["node", "express"],          // Include Node and Express types
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/*": ["./src/*"],
+    }
+  },
+  "include": [
+    "src/**/*.ts"                         // Include all .ts files under src
+  ]
+}

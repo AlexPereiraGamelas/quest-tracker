@@ -21,6 +21,11 @@ export default defineConfig(() => {
           target: "http://host.docker.internal:5000",
           changeOrigin: true,
           secure: false,
+        },
+        "/auth": {
+          target: "http://host.docker.internal:4000",
+          changeOrigin: true,
+          secure: false,
         }
       },
     },
