@@ -29,6 +29,13 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
+app.get("/api/serverStatus", (req: Request, res: Response): NodeJS.Timeout => {
+  // set timeout to set up example of loading state in UI with react-query
+  return setTimeout(() => {
+    return res.json({ message: 'Alive and Well' });
+  }, 2000)
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
