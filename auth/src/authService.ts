@@ -21,6 +21,7 @@ export async function login(username: string, password: string) {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new Error("Invalid credentials");
   }
-  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
-  return { token };
+  const USER_DATA = { id: user.id, username: user.username }
+  const token = jwt.sign(USER_DATA, SECRET_KEY, { expiresIn: "1h" });
+  return { ...USER_DATA, token };
 }
