@@ -4,12 +4,14 @@
  * Hook containing login component logic
  */
 
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import useLoginMutation from "./mutations/useLoginMutation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import type { Id } from "react-toastify";
 
-const useLogin = () => {
+const useLogin = (createSuccessToast: (message: string) => Id) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { mutate } = useLoginMutation();
 
   const handleFormSubmit = useCallback(
@@ -39,6 +41,13 @@ const useLogin = () => {
     },
     [mutate, navigate]
   );
+
+  useEffect(() => {
+    const isSuccessRegister = searchParams.get("registerSuccess");
+    if(isSuccessRegister){
+      createSuccessToast("Registered with success! Welcome.")
+    }
+  },[createSuccessToast, searchParams])
 
   return  {
     handleFormSubmit
