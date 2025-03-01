@@ -2,6 +2,7 @@
  * login form component
  */
 
+import { Link } from "react-router";
 import styles from "./index.module.scss";
 
 interface LoginFormProps {
@@ -25,6 +26,9 @@ const LoginForm = ({ handleFormSubmit }: LoginFormProps) => {
         aria-label="password input"
         placeholder="password"
       />
+      <Link className={styles.linkToRegister} to="/register">
+        Don't have an account yet? Create one <span>here</span>
+      </Link>
       <button className={styles.button} type="submit">
         Log In
       </button>

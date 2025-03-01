@@ -3,15 +3,30 @@
  */
 import { UserSession } from "@/pages/login/mutations/useLoginMutation";
 
-const useSession = () : {session: UserSession | undefined} => {
+interface UseSession {
+  session?: UserSession,
+  getSession: () => UserSession | undefined,
+  clearSession: () => void
+}
+
+const getSession = () => {
   const sessionString = localStorage.getItem("session")
   if(!sessionString){
-    return {
-      session: undefined
-    }
+    return undefined
   }
+
+  return JSON.parse(sessionString);
+}
+
+const clearSession = () => {
+  localStorage.removeItem("session")
+}
+
+const useSession = () : UseSession => {
   return {
-    session: JSON.parse(sessionString)
+    session: getSession(),
+    getSession,
+    clearSession
   }
 };
 

@@ -12,7 +12,14 @@ import type { Id } from "react-toastify";
 const useLogin = (createSuccessToast: (message: string) => Id) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { mutate } = useLoginMutation();
+  const { mutate: loginUserMutation } = useLoginMutation();
+
+  useEffect(() => {
+    const isSuccessRegister = searchParams.get("registerSuccess");
+    if(isSuccessRegister){
+      createSuccessToast("Registered with success! Welcome.")
+    }
+  },[createSuccessToast, searchParams])
 
   const handleFormSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +36,7 @@ const useLogin = (createSuccessToast: (message: string) => Id) => {
         return undefined;
       }
 
-      mutate(
+      loginUserMutation(
         {
           username: username,
           password: password,
@@ -39,15 +46,8 @@ const useLogin = (createSuccessToast: (message: string) => Id) => {
         }
       );
     },
-    [mutate, navigate]
+    [loginUserMutation, navigate]
   );
-
-  useEffect(() => {
-    const isSuccessRegister = searchParams.get("registerSuccess");
-    if(isSuccessRegister){
-      createSuccessToast("Registered with success! Welcome.")
-    }
-  },[createSuccessToast, searchParams])
 
   return  {
     handleFormSubmit

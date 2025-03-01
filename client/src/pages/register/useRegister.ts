@@ -10,7 +10,7 @@ import { useCallback } from "react";
 
 const useRegister = () => {
   const navigate = useNavigate();
-  const { mutate } = useRegisterMutation();
+  const { mutate: registerUserMutation } = useRegisterMutation();
 
   const handleFormSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +27,7 @@ const useRegister = () => {
         return undefined;
       }
 
-      mutate(
+      registerUserMutation(
         {
           username: username,
           password: password,
@@ -37,7 +37,7 @@ const useRegister = () => {
         }
       );
     },
-    [mutate, navigate]
+    [registerUserMutation, navigate]
   );
 
   return  {

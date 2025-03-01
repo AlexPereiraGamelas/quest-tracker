@@ -14,14 +14,22 @@ const ProtectedRoute = () => {
   return <Outlet />; // Render the requested route if authenticated
 };
 
+const NoSessionRoute = () => {
+  const { session } = useSession(); // Assuming user is null when not authenticated
+  if (session && session.username) {
+    return <Navigate to="/" replace />; // Redirect to login if not authenticated
+  }
+  return <Outlet />; // Render the requested route if authenticated
+};
+
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/*Public Routes*/}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        {/*Private Routes*/}
+        <Route element={<NoSessionRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
         </Route>
