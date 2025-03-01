@@ -25,6 +25,7 @@ const RegisterForm = ({ handleFormSubmit }: RegisterFormProps) => {
         aria-label="password input"
         placeholder="password"
       />
+      {/*TODO ADD LOADING STATE*/}
       <button className={styles.button} type="submit">
         Sign In
       </button>

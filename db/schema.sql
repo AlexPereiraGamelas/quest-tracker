@@ -25,4 +25,4 @@ ALTER TABLE "quests" ADD CONSTRAINT "quests_fk1" FOREIGN KEY ("campaign_id") REF
 ALTER TABLE "campaigns" ADD CONSTRAINT "campaigns_fk3" FOREIGN KEY ("user_key") REFERENCES "users"("id");
 
 INSERT INTO users (id, username, password)
-VALUES ('dev', 'dev', '$2b$10$gri7ohWgh4LLR5Z8eIzahuCaWBbTzQUhwqWqTiafjfVTvdAau/M2i');
+VALUES ('add351b9-c7a5-4c6d-94bc-adf9b4541975', 'dev', '$2b$10$gri7ohWgh4LLR5Z8eIzahuCaWBbTzQUhwqWqTiafjfVTvdAau/M2i');

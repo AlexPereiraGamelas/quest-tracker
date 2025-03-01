@@ -14,7 +14,9 @@ export async function registerUser(req: Request, res: Response) {
     res.json(result);
   } catch (error) {
     if(error instanceof Error) {
+      console.log(error)
       res.status(400).json({ error: error.message });
+      return
     }
     res.status(400).json({ error: "Unkown Error" });
   }
@@ -28,6 +30,7 @@ export async function loginUser(req: Request, res: Response) {
   } catch (error) {
     if(error instanceof Error) {
       res.status(400).json({ error: error.message });
+      return
     }
     res.status(400).json({ error: "Unkown Error" });
   }

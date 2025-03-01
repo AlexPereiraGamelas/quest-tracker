@@ -8,8 +8,9 @@ import styles from "./index.module.scss";
 import { useToast } from "@/hooks";
 
 function Login() {
-  const { DefaultToastContainer, createSuccessToast } = useToast();
-  const { handleFormSubmit } = useLogin(createSuccessToast);
+  const { DefaultToastContainer, createSuccessToast, createErrorToast } =
+    useToast();
+  const { handleFormSubmit } = useLogin(createSuccessToast, createErrorToast);
 
   return (
     <div className={styles.page}>

@@ -9,10 +9,10 @@ import useLoginMutation from "./mutations/useLoginMutation";
 import { useCallback, useEffect } from "react";
 import type { Id } from "react-toastify";
 
-const useLogin = (createSuccessToast: (message: string) => Id) => {
+const useLogin = (createSuccessToast: (message: string) => Id, createErrorToast: (message: string) => Id) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { mutate: loginUserMutation } = useLoginMutation();
+  const { mutate: loginUserMutation, isError } = useLoginMutation();
 
   useEffect(() => {
     const isSuccessRegister = searchParams.get("registerSuccess");
@@ -20,6 +20,13 @@ const useLogin = (createSuccessToast: (message: string) => Id) => {
       createSuccessToast("Registered with success! Welcome.")
     }
   },[createSuccessToast, searchParams])
+
+  useEffect(() => {
+    console.log(isError)
+    if(isError){
+      createErrorToast("Something went wrong, please try again!")
+    }
+  }, [createErrorToast, isError])
 
   const handleFormSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {

@@ -5,28 +5,25 @@ import { UserSession } from "@/pages/login/mutations/useLoginMutation";
 
 interface UseSession {
   session?: UserSession,
-  getSession: () => UserSession | undefined,
   clearSession: () => void
 }
 
 const getSession = () => {
   const sessionString = localStorage.getItem("session")
-  if(!sessionString){
+  if(!sessionString || sessionString === "undefined"){
     return undefined
   }
-
   return JSON.parse(sessionString);
 }
 
 const clearSession = () => {
-  localStorage.removeItem("session")
+  return localStorage.removeItem("session")
 }
 
 const useSession = () : UseSession => {
   return {
     session: getSession(),
-    getSession,
-    clearSession
+    clearSession,
   }
 };
 

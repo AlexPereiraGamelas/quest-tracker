@@ -18,9 +18,10 @@ export const doGet = async <ResponseType>(url: string, params?: Record<string, u
 
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("There was an error!", error.message);
+      //throw error for react-query
+      throw new Error(error.message)
     } else {
-      console.error("An unknown error occurred");
+      throw new Error("An unknown error occurred");
     }
   }
 };
@@ -45,9 +46,10 @@ export const doPost =  async <ResponseType, PayloadType>(url: string, payload: P
   
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error("There was an error!", error.message);
+        //throw error for react-query
+        throw new Error(error.message)
       } else {
-        console.error("An unknown error occurred");
+        throw new Error("An unknown error occurred");
       }
     }
 };

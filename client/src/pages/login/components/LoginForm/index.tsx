@@ -29,6 +29,7 @@ const LoginForm = ({ handleFormSubmit }: LoginFormProps) => {
       <Link className={styles.linkToRegister} to="/register">
         Don't have an account yet? Create one <span>here</span>
       </Link>
+      {/*TODO ADD LOADING STATE*/}
       <button className={styles.button} type="submit">
         Log In
       </button>
