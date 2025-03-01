@@ -2,13 +2,13 @@
  * login form component
  */
 
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import useLoginMutation from "./mutations/useLoginMutation";
 
 import styles from "./index.module.scss";
 
 const LoginForm = () => {
-  const { mutate, data } = useLoginMutation();
+  const { mutate } = useLoginMutation();
 
   const handleFormSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,12 +30,6 @@ const LoginForm = () => {
     },
     [mutate]
   );
-
-  useEffect(() => {
-    if (data) {
-      localStorage.setItem(data?.id, JSON.stringify(data));
-    }
-  }, [data]);
 
   return (
     <form className={styles.container} onSubmit={handleFormSubmit}>
