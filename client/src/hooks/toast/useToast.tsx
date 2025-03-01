@@ -6,6 +6,7 @@ import { Bounce, toast } from "react-toastify";
 import type { ToastOptions } from "react-toastify";
 
 import DefaultToastContainer from "./DefaultToastContainer";
+import { useCallback } from "react";
 
 const DEFAULT_TOAST_OPTIONS: Partial<ToastOptions> = {
   position: "top-right",
@@ -28,11 +29,15 @@ const ERROR_TOAST_CONFIG: ToastOptions = {
 };
 
 const useToast = () => {
-  const createSuccessToast = (message: string) =>
-    toast(message, SUCCESS_TOAST_CONFIG);
+  const createSuccessToast = useCallback(
+    (message: string) => toast(message, SUCCESS_TOAST_CONFIG),
+    []
+  );
 
-  const createErrorToast = (message: string) =>
-    toast(message, ERROR_TOAST_CONFIG);
+  const createErrorToast = useCallback(
+    (message: string) => toast(message, ERROR_TOAST_CONFIG),
+    []
+  );
 
   return {
     DefaultToastContainer,
