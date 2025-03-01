@@ -1,0 +1,24 @@
+/*
+Register header component styles
+*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 28px;
+}
+
+.title {
+  margin-bottom: 0;
+  //TODO: USE VARIABLE
+  color: #D0BCFE;
+  font-size: 1.5rem;
+}
+
+.message {
+  margin: 0;
+  //TODO: USE VARIABLE
+  color: #625B71;
+  font-size: 0.875rem;
+}
