@@ -3,11 +3,13 @@
  */
 
 import { useCallback } from "react";
+import { useNavigate } from "react-router";
 import useLoginMutation from "./mutations/useLoginMutation";
 
 import styles from "./index.module.scss";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { mutate } = useLoginMutation();
 
   const handleFormSubmit = useCallback(
@@ -15,20 +17,27 @@ const LoginForm = () => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       const username = data.get("username");
+      //TODO replace with form validator
       if (username instanceof File || !username) {
         return undefined;
       }
       const password = data.get("password");
+      //TODO replace with form validator
       if (password instanceof File || !password) {
         return undefined;
       }
 
-      mutate({
-        username: username,
-        password: password,
-      });
+      mutate(
+        {
+          username: username,
+          password: password,
+        },
+        {
+          onSuccess: () => navigate("/"),
+        }
+      );
     },
-    [mutate]
+    [mutate, navigate]
   );
 
   return (

@@ -2,8 +2,9 @@
  * login mutation
  */
 
-import { useMutation } from "@tanstack/react-query"
-import { LoginPayload } from "../types";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { LoginPayload } from "@/pages/login/components/LoginForm/types";
+
 const URL = "/auth/login"
 
 type UserSession = {
@@ -27,8 +28,8 @@ const login = async (payload: LoginPayload) => {
       }
   
       //Parse response into json and type it
-      const json: UserSession = await response.json();
-      return json
+      const session: UserSession = await response.json();
+      return session
   
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -39,10 +40,16 @@ const login = async (payload: LoginPayload) => {
     }
 };
 
-const useLoginMutation = () =>
-  useMutation({
-    mutationFn: (payload: LoginPayload) => login(payload)
+const useLoginMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: LoginPayload) => login(payload),
+    onSuccess: (data) => {
+      queryClient.setQueryData(["session"], data); // Store user data globally
+    },
   });
+}
+
 
 
 export default useLoginMutation
