@@ -3,12 +3,12 @@
  */
 
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { LoginPayload } from "@/pages/login/components/LoginForm/types";
+import { LoginPayload } from "@/pages/login/types";
 import { doPost } from "@/http/requests";
 
 const URL = "/auth/login"
 
-type UserSession = {
+export type UserSession = {
   id: string;
   username: string;
   token: string;

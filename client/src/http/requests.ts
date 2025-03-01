@@ -4,7 +4,7 @@
 
 export const doGet = async <ResponseType>(url: string, params?: Record<string, unknown>) => {
   //todo parse and add params to request
-  console.log(params)
+  console.log("get request params", params)
   try {
     const response = await fetch(url);
     
