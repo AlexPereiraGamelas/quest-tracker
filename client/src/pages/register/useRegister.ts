@@ -33,7 +33,7 @@ const useRegister = () => {
           password: password,
         },
         {
-          onSuccess: () => navigate("/login"),
+          onSuccess: () => navigate("/login?registerSuccess='true'"),
         }
       );
     },

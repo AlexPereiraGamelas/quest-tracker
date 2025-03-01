@@ -7,12 +7,12 @@ import { Home, Login, Register } from "@/pages";
 import useSession from "@/hooks/useSession";
 
 const ProtectedRoute = () => {
-  const { data } = useSession(); // Assuming user is null when not authenticated
-
-  if (!data || !data.username) {
+  const { session } = useSession(); // Assuming user is null when not authenticated
+  console.log("protected route session", session);
+  if (!session || !session.username) {
     return <Navigate to="/login" replace />; // Redirect to login if not authenticated
   }
-
+  console.log("passou");
   return <Outlet />; // Render the requested route if authenticated
 };
 

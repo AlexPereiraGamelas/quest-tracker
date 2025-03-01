@@ -2,14 +2,17 @@
  * hook to access session from react-query context
  */
 import { UserSession } from "@/pages/login/mutations/useLoginMutation";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-const useSession = (): UseQueryResult<UserSession | null> => {
-  return useQuery<UserSession | null>({
-    queryKey: ["session"],
-    queryFn: () => null, // Just returns the cached data, no refetching needed
-    staleTime: Infinity, // Keep user data available
-  });
+const useSession = () : {session: UserSession | undefined} => {
+  const sessionString = localStorage.getItem("session")
+  if(!sessionString){
+    return {
+      session: undefined
+    }
+  }
+  return {
+    session: JSON.parse(sessionString)
+  }
 };
 
 export default useSession;

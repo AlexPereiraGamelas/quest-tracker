@@ -2,7 +2,7 @@
  * login mutation
  */
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import { doPost } from "@/http/requests";
 import { RegisterPayload } from "@/pages/register/types"
 
@@ -14,16 +14,12 @@ type UserSession = {
   token: string;
 }
 
-const useLoginMutation = () => {
-  const queryClient = useQueryClient();
+const useRegisterMutation = () => {
   return useMutation({
     mutationFn: (payload: RegisterPayload) => doPost<UserSession, RegisterPayload>(URL, payload),
-    onSuccess: (data) => {
-      queryClient.setQueryData(["session"], data); // Store user data globally
-    },
   });
 }
 
 
 
-export default useLoginMutation
+export default useRegisterMutation

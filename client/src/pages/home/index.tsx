@@ -1,31 +1,19 @@
 /**
  * Home
  */
-import { useNavigate } from "react-router";
-
 import useServerStatus from "./queries/useServerStatus";
 import useAuthSatus from "./queries/useAuthStatus";
-import useSession from "@/hooks/useSession";
-import { useEffect } from "react";
 
 import styles from "./index.module.scss";
 
 function Home() {
-  const navigate = useNavigate();
   const { data, isError, error, isFetched } = useServerStatus();
-  const { data: session } = useSession();
   const {
     data: authData,
     isError: authIsError,
     error: authError,
     isFetched: authIsFetched,
   } = useAuthSatus();
-
-  useEffect(() => {
-    if (!session) {
-      navigate("/login");
-    }
-  }, [navigate, session]);
 
   if (!isFetched || !authIsFetched) {
     return <div>Loading</div>;
