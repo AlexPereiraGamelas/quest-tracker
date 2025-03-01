@@ -38,9 +38,8 @@ function Home() {
   return (
     <div className={styles.container}>
       <h1>HOMEPAGE</h1>
-      <p>{data?.message}</p>
-      <p>api status: {data?.status}</p>
-      <p>auth status: {authData?.status}</p>
+      <p>api status: {data?.message}</p>
+      <p>auth status: {authData?.message}</p>
     </div>
   );
 }
