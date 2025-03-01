@@ -1,0 +1,21 @@
+/*
+login page styles
+*/
+
+.container {
+  width: 40%;
+  max-width: 600px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* On screens that are 992px or less, set the width to full */
+  @media screen and (max-width: 992px) {
+    width: 100%;
+    max-width: 100%;
+  }
+}

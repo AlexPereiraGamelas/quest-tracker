@@ -1,0 +1,30 @@
+/*
+styles for the login form component
+*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input {
+  height: 56px;
+  border: 1px solid #CCC2DC;
+  background-color: transparent;
+}
+
+.input::placeholder{
+  color: #625B71;
+  text-transform: capitalize;
+  padding: 12px;
+}
+
+.button{
+  color: #6750A4;
+  background-color: #D0BCFE;
+  text-align: center;
+  text-transform: uppercase;
+  height: 42px;
+  font-weight: bold;
+}

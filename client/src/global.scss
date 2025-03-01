@@ -1,0 +1,22 @@
+//global scss
+body {
+ //TODO: USE VARIABLE
+ background-color: #211F26;
+ margin: 0;
+}
+
+main {
+  display: block;
+}
+
+
+@font-face{
+  font-family: "Roboto";
+  src:local("Robot-Regular"),
+  url('./assets/fonts/Roboto/Roboto-Regular.ttf') 
+}
+
+
+*{
+  font-family: Roboto;
+}
