@@ -3,7 +3,7 @@
  */
 
 import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router";
-import { Home, Login, Register } from "@/pages";
+import { Adventure, Home, Login, Register } from "@/pages";
 import { useSession } from "@/hooks";
 
 const ProtectedRoute = () => {
@@ -32,6 +32,7 @@ const AppRouter = () => {
         </Route>
         <Route element={<ProtectedRoute />}>
           <Route index element={<Home />} />
+          <Route path="/adventure/:id" element={<Adventure />} />
         </Route>
       </Routes>
     </BrowserRouter>

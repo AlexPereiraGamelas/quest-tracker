@@ -1,0 +1,14 @@
+/*
+adventure page styles
+*/
+
+.page {
+  height: 100vh;
+}
+
+.adventure {
+  &__title{
+    color: #E6E0E9;
+    font-size: 24px;
+  }
+}

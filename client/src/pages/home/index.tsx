@@ -7,6 +7,7 @@ import useAuthSatus from "./queries/useAuthStatus";
 import styles from "./index.module.scss";
 import { useSession } from "@/hooks";
 import { useCallback } from "react";
+import { Link } from "react-router";
 
 function Home() {
   const { data, isError, error, isFetched } = useServerStatus();
@@ -24,7 +25,11 @@ function Home() {
   }, [clearSession]);
 
   if (!isFetched || !authIsFetched) {
-    return <div>Loading</div>;
+    return (
+      <div className={styles.container}>
+        <p>Loading</p>
+      </div>
+    );
   }
 
   if (isError || authIsError) {
@@ -36,6 +41,10 @@ function Home() {
       <h1>HOMEPAGE</h1>
       <p>api status: {data?.message}</p>
       <p>auth status: {authData?.message}</p>
+      <Link className={styles.link} to={"/adventure/1"}>
+        Sample Adventure Page
+      </Link>
+      <br />
       <button onClick={handleLogout}>Log Out</button>
     </div>
   );
