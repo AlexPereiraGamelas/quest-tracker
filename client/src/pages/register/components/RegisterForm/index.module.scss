@@ -33,3 +33,13 @@ styles for the login form component
 .button::placeholder {
   color: red
 }
+
+.linkToLogin {
+  color: #CCC2DC;
+  opacity: 0.7;
+  text-decoration: none;
+
+  span {
+    text-decoration: underline;
+  }
+}

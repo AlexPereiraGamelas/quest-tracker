@@ -13,6 +13,7 @@ import styles from "./styles.module.scss";
 function Adventure() {
   const { id } = useParams();
   const { title, QUESTS_DATA } = useAdventure(id);
+
   return (
     <div className={styles.page}>
       <div className={styles.adventure__title}>{title}</div>

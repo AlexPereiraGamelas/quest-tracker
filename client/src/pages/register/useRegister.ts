@@ -6,11 +6,18 @@
 
 import { useNavigate } from "react-router";
 import useRegisterMutation from "./mutations/useRegisterMutation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import type { Id } from "react-toastify";
 
-const useRegister = () => {
+const useRegister = (createErrorToast: (message: string) => Id) => {
   const navigate = useNavigate();
-  const { mutate: registerUserMutation } = useRegisterMutation();
+  const { mutate: registerUserMutation, isError } = useRegisterMutation();
+
+  useEffect(() => {
+    if(isError){
+      createErrorToast("Something went wrong! Please try again")
+    }
+  }, [isError, createErrorToast])
 
   const handleFormSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {

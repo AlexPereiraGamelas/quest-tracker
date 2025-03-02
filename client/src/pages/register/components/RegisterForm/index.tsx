@@ -2,6 +2,7 @@
  * Register form component
  */
 
+import { Link } from "react-router";
 import styles from "./index.module.scss";
 
 interface RegisterFormProps {
@@ -25,6 +26,9 @@ const RegisterForm = ({ handleFormSubmit }: RegisterFormProps) => {
         aria-label="password input"
         placeholder="password"
       />
+      <Link className={styles.linkToLogin} to="/login">
+        Already have an account? Sign in <span>here</span>
+      </Link>
       {/*TODO ADD LOADING STATE*/}
       <button className={styles.button} type="submit">
         Sign In

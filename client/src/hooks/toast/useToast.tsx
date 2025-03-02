@@ -22,10 +22,12 @@ const DEFAULT_TOAST_OPTIONS: Partial<ToastOptions> = {
 
 const SUCCESS_TOAST_CONFIG: ToastOptions = {
   ...DEFAULT_TOAST_OPTIONS,
+  type: "success",
 };
 
 const ERROR_TOAST_CONFIG: ToastOptions = {
   ...DEFAULT_TOAST_OPTIONS,
+  type: "error",
 };
 
 const useToast = () => {
